@@ -2,4 +2,5 @@
 
 1st quiz answers are in main branch
 
-2nd quiz answers are in branch 
+2nd quiz answers are in pullrequests
+
