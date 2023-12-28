@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ClubbedWords {
+    public static void main(String[] args) {
+        String[] words = {"mat", "mate", "matbellmates", "bell", "bellmatesbell", "butterribbon", "butter", "ribbon"};
+
+        List<String> clubbedWords = new ArrayList<>();
+
+        for (String word : words) {
+            if (isClubbedWord(word, Arrays.asList(words))) {
+                clubbedWords.add(word);
+            }
+        }
+
+        System.out.println("Clubbed Words: " + clubbedWords);
+    }
+
+    private static boolean isClubbedWord(String word, List<String> words) {
+        if (word.length() == 0) {
+            return false;
+        }
+        if (words.contains(word)) {
+            return true;
+        }
+
+        for (int i = 1; i < word.length(); i++) {
+            String prefix = word.substring(0, i);
+            String suffix = word.substring(i);
+
+            if (words.contains(prefix) && isClubbedWord(suffix, words)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
