@@ -1,0 +1,63 @@
+class Vehicle {
+    protected double speed;
+
+    public Vehicle(double speed) {
+        this.speed = speed;
+    }
+
+    public double calculateSpeed() {
+        return speed;
+    }
+}
+
+class Car extends Vehicle {
+    private int numberOfPassengers;
+
+    public Car(double speed, int numberOfPassengers) {
+        super(speed);
+        this.numberOfPassengers = numberOfPassengers;
+    }
+
+    @Override
+    public double calculateSpeed() {
+        return super.calculateSpeed() * numberOfPassengers;
+    }
+
+    // Getter and setter for numberOfPassengers
+}
+
+class Motorcycle extends Vehicle {
+    private int numberOfWheels;
+
+    public Motorcycle(double speed, int numberOfWheels) {
+        super(speed);
+        this.numberOfWheels = numberOfWheels;
+    }
+
+    @Override
+    public double calculateSpeed() {
+        return super.calculateSpeed() * numberOfWheels;
+    }
+
+    // Getter and setter for numberOfWheels
+}
+public class VehicleDemo {
+    public static void main(String[] args) {
+        Car car = new Car(100, 4); // Speed of 100 and 4 passengers
+        Motorcycle motorcycle = new Motorcycle(120, 2); // Speed of 120 and 2 wheels
+
+        double carSpeed = car.calculateSpeed();
+        double motorcycleSpeed = motorcycle.calculateSpeed();
+
+        System.out.println("Car's effective speed: " + carSpeed);
+        System.out.println("Motorcycle's effective speed: " + motorcycleSpeed);
+
+        if (carSpeed > motorcycleSpeed) {
+            System.out.println("The car has the highest effective speed.");
+        } else if (motorcycleSpeed > carSpeed) {
+            System.out.println("The motorcycle has the highest effective speed.");
+        } else {
+            System.out.println("Both vehicles have the same effective speed.");
+        }
+    }
+}
