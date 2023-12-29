@@ -1,0 +1,66 @@
+class Employee {
+    private String name;
+    private int employeeID;
+    protected static final double BASE_SALARY = 50000;
+
+    public Employee(String name, int employeeID) {
+        this.name = name;
+        this.employeeID = employeeID;
+    }
+
+    public double calculateSalary() {
+        return BASE_SALARY;
+    }
+
+    // Getters and setters for name and employeeID
+    // These methods can be added here or generated using IDE tools
+}
+
+class Manager extends Employee {
+    private double bonusPercentage;
+
+    public Manager(String name, int employeeID, double bonusPercentage) {
+        super(name, employeeID);
+        this.bonusPercentage = bonusPercentage;
+    }
+
+    @Override
+    public double calculateSalary() {
+        return super.calculateSalary() + (super.calculateSalary() * (bonusPercentage / 100));
+    }
+
+    // Getter and setter for bonusPercentage
+}
+
+class Developer extends Employee {
+    private String programmingLanguage;
+    private static final double DEVELOPER_ALLOWANCE = 10000;
+
+    public Developer(String name, int employeeID, String programmingLanguage) {
+        super(name, employeeID);
+        this.programmingLanguage = programmingLanguage;
+    }
+
+    @Override
+    public double calculateSalary() {
+        return super.calculateSalary() + DEVELOPER_ALLOWANCE;
+    }
+
+    // Getter and setter for programmingLanguage
+}
+public class EmployeeDemo {
+    public static void main(String[] args) {
+        Manager manager = new Manager("John Doe", 101, 15.0);
+        Developer developer = new Developer("Alice Smith", 102, "Java");
+
+        System.out.println("Manager details:");
+        System.out.println("Name: " + manager.getName());
+        System.out.println("Employee ID: " + manager.getEmployeeID());
+        System.out.println("Salary: $" + manager.calculateSalary());
+
+        System.out.println("\nDeveloper details:");
+        System.out.println("Name: " + developer.getName());
+        System.out.println("Employee ID: " + developer.getEmployeeID());
+        System.out.println("Salary: $" + developer.calculateSalary());
+    }
+}
