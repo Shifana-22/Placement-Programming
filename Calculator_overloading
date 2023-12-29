@@ -1,0 +1,24 @@
+public class Calculator {
+
+    // Method to multiply two integers
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+
+    // Method overloading to multiply three doubles
+    public double multiply(double x, double y, double z) {
+        return x * y * z;
+    }
+
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+
+        // Using the multiply method with integers
+        int resultInt = calculator.multiply(5, 10);
+        System.out.println("Product of integers: " + resultInt);
+
+        // Using the multiply method with doubles
+        double resultDouble = calculator.multiply(2.5, 3.0, 4.0);
+        System.out.println("Product of doubles: " + resultDouble);
+    }
+}
