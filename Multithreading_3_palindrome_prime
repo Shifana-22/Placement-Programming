@@ -1,0 +1,72 @@
+class PrimeFinder implements Runnable {
+    public void run() {
+        System.out.print("Prime numbers from 0 to 10: ");
+        for (int i = 0; i <= 10; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    private boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class PalindromeFinder implements Runnable {
+    public void run() {
+        System.out.print("Palindrome numbers from 10 to 50: ");
+        for (int i = 10; i <= 50; i++) {
+            if (isPalindrome(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    private boolean isPalindrome(int num) {
+        int reversed = 0;
+        int originalNum = num;
+
+        while (num != 0) {
+            int remainder = num % 10;
+            reversed = reversed * 10 + remainder;
+            num /= 10;
+        }
+
+        return originalNum == reversed;
+    }
+}
+
+public class SequentialThreadExecution {
+    public static void main(String[] args) {
+        PrimeFinder primeFinder = new PrimeFinder();
+        PalindromeFinder palindromeFinder = new PalindromeFinder();
+
+        Thread primeThread = new Thread(primeFinder);
+        Thread palindromeThread = new Thread(palindromeFinder);
+
+        primeThread.start();
+        try {
+            primeThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        palindromeThread.start();
+        try {
+            palindromeThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
