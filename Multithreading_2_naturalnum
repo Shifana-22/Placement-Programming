@@ -1,0 +1,28 @@
+class PrintNumbers implements Runnable {
+    private int start;
+    private int end;
+
+    public PrintNumbers(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public void run() {
+        for (int i = start; i <= end; i++) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+public class PrintNaturalNumbers {
+    public static void main(String[] args) {
+        int N = 18; // Replace this with the desired value of N
+        int half = N / 2;
+
+        Thread t1 = new Thread(new PrintNumbers(1, half));
+        Thread t2 = new Thread(new PrintNumbers(half + 1, N));
+
+        t1.start();
+        t2.start();
+    }
+}
